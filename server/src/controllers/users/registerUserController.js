@@ -1,4 +1,5 @@
 import insertUserService from "../../services/users/insertUserService.js";
+import randomstring from "randomstring";
 import { sendEmail } from "../../utils/emailUtils.js";
 import {
   validateEmailTemplate,

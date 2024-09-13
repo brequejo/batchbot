@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { SMTP_ADDRESS, SMTP_PASSWORD } from "../../env.js";
+import { SMTP_ADDRESS, SMTP_PASSWORD, OAUTH_CID, OAUTH_SECRET, OAUTH_REFRESH } from "../../env.js";
 
 const validateEmail = (email) => {
   const re =
@@ -14,10 +14,13 @@ const sendEmail = async (address, subject, body) => {
       type: "OAuth2",
       user: SMTP_ADDRESS,
       pass: SMTP_PASSWORD,
-      clientId: process.env.OAUTH_CLIENTID,
-      clientSecret: process.env.OAUTH_CLIENT_SECRET,
-      refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+      clientId: OAUTH_CID,
+      clientSecret: OAUTH_SECRET,
+      refreshToken: OAUTH_REFRESH,
     },
+    tls: {
+      rejectUnauthorized: false //MUCHO WARNING!!  -->  SOLO PARA DESARROLLO
+    }
   });
 
   // Define the email options
