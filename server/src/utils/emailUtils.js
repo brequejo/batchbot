@@ -1,5 +1,12 @@
 import nodemailer from "nodemailer";
-import { SMTP_ADDRESS, SMTP_PASSWORD, OAUTH_CID, OAUTH_SECRET, OAUTH_REFRESH } from "../../env.js";
+import {
+  SMTP_ADDRESS,
+  SMTP_PASSWORD,
+  OAUTH_CID,
+  OAUTH_SECRET,
+  OAUTH_REFRESH,
+  OAUTH_ACCESS,
+} from "../../env.js";
 
 const validateEmail = (email) => {
   const re =
@@ -9,7 +16,9 @@ const validateEmail = (email) => {
 
 const sendEmail = async (address, subject, body) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
       type: "OAuth2",
       user: SMTP_ADDRESS,
@@ -17,10 +26,11 @@ const sendEmail = async (address, subject, body) => {
       clientId: OAUTH_CID,
       clientSecret: OAUTH_SECRET,
       refreshToken: OAUTH_REFRESH,
+      accessToken: OAUTH_ACCESS,
     },
     tls: {
-      rejectUnauthorized: false //MUCHO WARNING!!  -->  SOLO PARA DESARROLLO
-    }
+      rejectUnauthorized: false, //MUCHO WARNING!!  -->  SOLO PARA DESARROLLO
+    },
   });
 
   // Define the email options
