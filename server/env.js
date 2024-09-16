@@ -1,5 +1,23 @@
 import "dotenv/config";
 
-const { PORT, DB_URL } = process.env;
+const {
+  PORT,
+  DB_URL,
+  SMTP_ADDRESS,
+  SMTP_PASSWORD,
+  OAUTH_CID,
+  OAUTH_SECRET,
+  OAUTH_REFRESH,
+  OAUTH_ACCESS,
+} = process.env;
 
-export { PORT, DB_URL };
+export {
+  PORT,
+  DB_URL,
+  SMTP_ADDRESS,
+  SMTP_PASSWORD,
+  OAUTH_CID,
+  OAUTH_SECRET,
+  OAUTH_REFRESH,
+  OAUTH_ACCESS,
+};
