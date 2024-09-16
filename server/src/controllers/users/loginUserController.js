@@ -10,13 +10,14 @@ const loginUserController = async (req, res, next) => {
 
     const { email, password } = req.body;
 
-    await loginUserService(email, password);
+    const result = await loginUserService(email, password);
 
-    res.send({
-      status: "ok",
-      message:
-        "Login Ok.",
-    });
+    if (result.type === "error") {
+      return res.status(result.statusCode).send({
+        message: result.message,
+      });
+    }
+    res.json(result.data);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: error.message });

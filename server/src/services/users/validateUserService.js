@@ -1,27 +1,33 @@
-import { User } from '../../models/userModel.js';
-import { TOKEN_KEY } from '../../../env.js';
+import jwt from "jsonwebtoken";
+import { User } from "../../models/userModel.js";
+import { TOKEN_KEY } from "../../../env.js";
+import createServiceObject from "../../utils/serviceObjectUtil.js";
 
 const validateUserService = async (email, registrationCode) => {
-    const user = await User.findOne({ email });
-    if(!user) {
-        return res.status(404).send("El usuario no existe.")
-    };
+  const user = await User.findOne({ email });
+  if (!user) {
+    return createServiceObject("error", 404, "El usuario no existe.");
+  }
 
-    if(!user.registrationCode === registrationCode) {
-        return res.status(400).send("El código de registro es incorrecto.")
-    };
+  if (!user.registrationCode === registrationCode) {
+    return createServiceObject(
+      "error",
+      400,
+      "El código de registro es incorrecto."
+    );
+  }
 
-    const token = jwt.sign(
-        { user_id: user._id, email },
-        TOKEN_KEY,
-        {
-          expiresIn: "24h",
-        }
-      );
-      user.token = token;
+  const token = jwt.sign({ user_id: user._id, email }, TOKEN_KEY, {
+    expiresIn: "24h",
+  });
+  user.token = token;
 
-      return user;
-  
-}
+  return createServiceObject(
+    "success",
+    200,
+    "El usuario se ha validado correctamente.",
+    user
+  );
+};
 
 export default validateUserService;

@@ -9,7 +9,7 @@ const {
   OAUTH_SECRET,
   OAUTH_REFRESH,
   OAUTH_ACCESS,
-  TOKEN_KEY
+  TOKEN_KEY,
 } = process.env;
 
 export {
@@ -21,5 +21,5 @@ export {
   OAUTH_SECRET,
   OAUTH_REFRESH,
   OAUTH_ACCESS,
-  TOKEN_KEY
+  TOKEN_KEY,
 };

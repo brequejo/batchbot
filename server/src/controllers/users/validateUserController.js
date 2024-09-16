@@ -10,13 +10,14 @@ const validateUserController = async (req, res, next) => {
 
     const { email, registrationCode } = req.body;
 
-    await validateUserService(email, registrationCode);
+    const result = await validateUserService(email, registrationCode);
 
-    res.send({
-      status: "ok",
-      message:
-        "Usuario validado correctamente.",
-    });
+    if (result.type === "error") {
+      return res.status(result.statusCode).send({
+        message: result.message,
+      });
+    }
+    res.json(result.data);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: error.message });
