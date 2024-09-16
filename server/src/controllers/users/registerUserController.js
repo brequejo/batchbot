@@ -18,7 +18,7 @@ const registerUserController = async (req, res, next) => {
 
     const registrationCode = randomstring.generate(30);
 
-    await insertUserService(email, password);
+    await insertUserService(email, password, registrationCode);
 
     await sendEmail(
       email,

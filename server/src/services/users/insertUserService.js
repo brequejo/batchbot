@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import uniqueNameGenerator from "../../utils/uniqueNameGenerator.js";
 import { User } from '../../models/userModel.js';
 
-const insertUserService = async (email, password) => {
+const insertUserService = async (email, password, registrationCode) => {
 
     const uniqueUserName = uniqueNameGenerator();
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -14,6 +14,7 @@ const insertUserService = async (email, password) => {
         profileImage: "genericProfilePicture.png",
         foodPreferences: [],
         foodAllergies: [],
+        registrationCode: registrationCode,
         
       };
   
