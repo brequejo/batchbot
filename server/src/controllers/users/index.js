@@ -1,5 +1,5 @@
-import registerUserController from "./registerUserController.js"
+import registerUserController from "./registerUserController.js";
+import validateUserController from "./validateUserController.js";
+import loginUserController from "./loginUserController.js";
 
-export {
-    registerUserController
-}
+export { registerUserController, validateUserController, loginUserController };

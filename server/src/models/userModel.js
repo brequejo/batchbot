@@ -31,6 +31,12 @@ const userSchema = mongoose.Schema({
     type: Array,
     required: true,
   },
+  registrationCode: {
+    type: String,
+  },
+  token: {
+    type: String,
+  },
 });
 
 export const User = mongoose.model("User", userSchema);
