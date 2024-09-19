@@ -14,6 +14,10 @@ const loginUserService = async (email, password) => {
     );
   }
 
+  if (user.registrationCode !== undefined) {
+    return createServiceObject("error", 400, "Usuario no validado, por favor valida tu usuario.");
+}
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   if (!user.password === hashedPassword) {

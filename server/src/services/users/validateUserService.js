@@ -9,7 +9,11 @@ const validateUserService = async (email, registrationCode) => {
     return createServiceObject("error", 404, "El usuario no existe.");
   }
 
-  if (!user.registrationCode === registrationCode) {
+  if (user.registrationCode === undefined) {
+      return createServiceObject("error", 400, "Usuario ya validado.");
+  }
+
+  if (user.registrationCode !== registrationCode) {
     return createServiceObject(
       "error",
       400,
@@ -17,10 +21,8 @@ const validateUserService = async (email, registrationCode) => {
     );
   }
 
-  const token = jwt.sign({ user_id: user._id, email }, TOKEN_KEY, {
-    expiresIn: "24h",
-  });
-  user.token = token;
+  user.registrationCode = undefined;
+  await user.save();
 
   return createServiceObject(
     "success",
