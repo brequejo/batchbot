@@ -23,6 +23,6 @@ router.post("/token-test", auth, (req, res) => {
   res.status(200).send("Token apañao 🙌");
 });
 
-router.get("/users/:id", auth, getUserProfileController);
+router.get("/users/:userId", auth, getUserProfileController);
 
 export default router;
