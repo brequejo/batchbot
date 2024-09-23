@@ -1,2 +1,3 @@
 import createRecipeController from "./createRecipeController.js";
-export { createRecipeController };
+import getUserRecipesController from "./getUserRecipesController.js";
+export { createRecipeController, getUserRecipesController };
