@@ -1,6 +1,22 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
+const ingredientsSchema = mongoose.Schema({
+  name: {
+    type: Schema.Types.ObjectId,
+    ref: "Ingredient",
+  },
+  unit: {
+    type: Schema.Types.ObjectId,
+    ref: "Unit",
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+});
+
 const recipeSchema = mongoose.Schema(
   {
     name: {
@@ -16,6 +32,7 @@ const recipeSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    ingredients: [ingredientsSchema],
     instructions: {
       type: String,
       required: true,

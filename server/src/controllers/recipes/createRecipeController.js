@@ -5,6 +5,7 @@ const createRecipeController = async (req, res, next) => {
     const {
       name,
       description,
+      ingredients,
       instructions,
       categories,
       tags,
@@ -16,6 +17,7 @@ const createRecipeController = async (req, res, next) => {
       name,
       author: req.user.user_id,
       description,
+      ingredients,
       instructions,
       categories,
       tags,

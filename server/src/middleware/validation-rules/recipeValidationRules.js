@@ -4,6 +4,7 @@ const recipeValidationRules = () => {
   return [
     body("name").notEmpty(),
     body("description").notEmpty(),
+    body("ingredients").notEmpty(),
     body("instructions").notEmpty(),
     body("categories").notEmpty(),
     body("tags").notEmpty(),
