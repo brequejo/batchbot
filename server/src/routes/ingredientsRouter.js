@@ -6,7 +6,7 @@ import {
   createIngredientController,
   getIngredientsController,
 } from "../controllers/ingredients/index.js";
-import ingredientValidationRules from "../middleware/validation-rules/ingridientValidationRules.js";
+import ingredientValidationRules from "../middleware/validation-rules/ingredientValidationRules.js";
 
 const router = express.Router();
 
