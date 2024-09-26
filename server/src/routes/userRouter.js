@@ -25,4 +25,6 @@ router.post("/token-test", auth, (req, res) => {
 
 router.get("/users/:userId", auth, getUserProfileController);
 
+router.get('/home', auth);
+
 export default router;
