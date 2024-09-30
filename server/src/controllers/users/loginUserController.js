@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import loginUserService from "../../services/users/loginUserService.js";
 
 const loginUserController = async (req, res, next) => {
@@ -17,7 +18,17 @@ const loginUserController = async (req, res, next) => {
         message: result.message,
       });
     }
-    res.json(result.data);
+    res.cookie("batchbot", result.data.token, {
+      //secure: true,
+      httpOnly: true,
+      expires: dayjs().add(30, "days").toDate(),
+    });
+    const userData = {
+      email: result.data.email,
+      userName: result.data.userName,
+      profileImage: result.data.profileImage,
+    };
+    res.json(userData);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: error.message });
