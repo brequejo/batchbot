@@ -1,12 +1,10 @@
 import express from "express";
-import verifyToken from "../middleware/auth.js";
 import auth from "../middleware/auth.js";
 
 import {
   registerUserController,
   validateUserController,
   loginUserController,
-  selectUserByIdService,
   getUserProfileController,
 } from "../controllers/users/index.js";
 
