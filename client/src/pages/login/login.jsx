@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthService from '../../services/auth/auth.service';
+import AuthService from '@services/auth/auth.service';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +12,9 @@ const Login = () => {
     try {
       const res = await AuthService.login(email, password);
       console.log('Login successful!', res);
-      navigate('/home');
+
+      const userId = res.userId;
+      navigate(`/users/${userId}`);
     } catch (error) {
       console.error('Login failed!');
       console.error(error);

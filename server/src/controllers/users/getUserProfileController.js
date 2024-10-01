@@ -2,8 +2,9 @@ import selectUserByIdService from "../../services/users/selectUserByIdService.js
 
 const getUserProfileController = async (req, res, next) => {
     try {
-        const {userId} = req.params;
+        const userId = req.params.userId;
         const result = await selectUserByIdService(userId);
+        
 
         if (result.type === "error") {
             return res.status(result.statusCode).send({

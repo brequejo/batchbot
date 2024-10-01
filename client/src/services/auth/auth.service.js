@@ -26,6 +26,7 @@ const login = (email, password) => {
     )
     .then((res) => {
       LocalStorage.set('user', {
+        userId: res.data.userId,
         email: res.data.email,
         userName: res.data.userName,
         profileImage: res.data.profileImage,

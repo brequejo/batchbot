@@ -24,6 +24,7 @@ const loginUserController = async (req, res, next) => {
       expires: dayjs().add(30, "days").toDate(),
     });
     const userData = {
+      userId: result.data.id,
       email: result.data.email,
       userName: result.data.userName,
       profileImage: result.data.profileImage,

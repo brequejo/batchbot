@@ -1,16 +1,9 @@
 import { User } from "../../models/userModel.js"
 import createServiceObject from "../../utils/serviceObjectUtil.js";
 
-const selectUserByIdService = async (user_id) => {
+const selectUserByIdService = async (userId) => {
     try{
-        if(typeof user_id !== 'string') {
-            return createServiceObject(
-                "error",
-                400,
-                "El id debe ser un string.");
-        };
-
-        const user = await User.findById(user_id);
+        const user = await User.findById(userId);
         if (!user) {
             return createServiceObject(
                 "error",
@@ -19,6 +12,7 @@ const selectUserByIdService = async (user_id) => {
         };
 
         const userData = {
+            userId: user._id,
             email: user.email,
             username: user.userName,
             profilePicture: user.profileImage
