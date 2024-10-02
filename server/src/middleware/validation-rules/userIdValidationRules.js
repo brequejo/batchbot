@@ -1,7 +1,11 @@
-import { param } from "express-validator";
+import { query } from "express-validator";
 
 const userIdValidationRules = () => {
-  return [param("userId").notEmpty().escape().isLength(24)];
+  return [
+    query("userId")
+      .isMongoId()
+      .withMessage("Invalid user ID"),
+  ];
 };
 
 export default userIdValidationRules;
