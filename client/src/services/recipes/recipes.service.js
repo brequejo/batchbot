@@ -9,7 +9,6 @@ const getUserRecipes = (userId) => {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res.data);
       return res.data;
     });
 };
