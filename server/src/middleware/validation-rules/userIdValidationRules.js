@@ -1,10 +1,12 @@
-import { query } from "express-validator";
+import { query } from 'express-validator';
 
 const userIdValidationRules = () => {
   return [
-    query("userId")
+    query('userId')
+      .notEmpty()
+      .escape()
       .isMongoId()
-      .withMessage("Invalid user ID"),
+      .withMessage('Invalid user ID'),
   ];
 };
 

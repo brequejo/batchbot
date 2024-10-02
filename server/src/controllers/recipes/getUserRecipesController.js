@@ -2,7 +2,7 @@ import getUserRecipesService from "../../services/recipes/getUserRecipesService.
 
 const getUserRecipesController = async (req, res, next) => {
   try {
-    const { userId } = req.query;
+    const { userId } = req.matchedData;
 
     const result = await getUserRecipesService(userId);
 

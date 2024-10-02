@@ -1,10 +1,12 @@
-import { param } from "express-validator";
+import { param } from 'express-validator';
 
 const recipeIdValidationRules = () => {
   return [
-    param("recipeId")
+    param('recipeId')
+      .notEmpty()
+      .escape()
       .isMongoId()
-      .withMessage("Invalid recipe ID"),
+      .withMessage('Invalid recipe ID'),
   ];
 };
 
