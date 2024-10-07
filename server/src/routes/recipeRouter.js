@@ -6,6 +6,7 @@ import {
   createRecipeController,
   getUserRecipesController,
   getRecipeByIdController,
+  deleteRecipeController,
 } from "../controllers/recipes/index.js";
 import recipeValidationRules from "../middleware/validation-rules/recipeValidationRules.js";
 import userIdValidationRules from "../middleware/validation-rules/userIdValidationRules.js";
@@ -35,6 +36,14 @@ router.get(
   recipeIdValidationRules(),
   validator,
   getRecipeByIdController,
+);
+
+router.delete(
+  "/recipes/:recipeId",
+  auth,
+  recipeIdValidationRules(),
+  validator,
+  deleteRecipeController
 );
 
 export default router;
