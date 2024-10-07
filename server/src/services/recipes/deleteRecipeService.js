@@ -1,15 +1,16 @@
-import Recipe from '../../models/recipeModel.js';
+import { Recipe } from '../../models/recipeModel.js';
+import createServiceObject from "../../utils/serviceObjectUtil.js";
 
 const deleteRecipeService = async (recipeId, userId) => {
   try {
     const recipe = await Recipe.findById(recipeId);
 
     if (!recipe) {
-      return createServiceObject('success', 404, 'Receta no encontrada.');
+      return createServiceObject('error', 404, 'Receta no encontrada.');
     }
 
     if (recipe.author.toString() !== userId) {
-      return createServiceObject('success', 403, 'No estás autorizado para borrar esta receta.');
+      return createServiceObject('error', 403, 'No estás autorizado para borrar esta receta.');
     }
 
     const deleteRecipe = await Recipe.findByIdAndDelete(recipeId);
@@ -17,7 +18,7 @@ const deleteRecipeService = async (recipeId, userId) => {
     return createServiceObject('success', 200, 'Receta borrada.');
 
   } catch (error) {
-    return createServiceObject('error', 500, 'Receta borrada.');;
+    return createServiceObject('error', 500, 'Error al borrar receta.');
   }
 };
 
