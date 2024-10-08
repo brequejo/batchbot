@@ -1,7 +1,7 @@
 import { Recipe } from "../../models/recipeModel.js"
 import createServiceObject from "../../utils/serviceObjectUtil.js";
 
-const selectRecipeByIdService = async (recipe_id) => {
+const selectRecipeByIdService = async (recipe_id,) => {
     try{
         const recipe = await Recipe.findById(recipe_id);
 

@@ -3,6 +3,7 @@ import selectRecipeByIdService from '../../services/recipes/selectRecipeByIdServ
 const getRecipeByIdController = async (req, res, next) => {
   try {
     const { recipeId } = req.matchedData;
+    
     const result = await selectRecipeByIdService(recipeId);
 
     if (result.type === 'error') {
