@@ -1,5 +1,5 @@
 import { Recipe } from '../../models/recipeModel.js';
-import createServiceObject from "../../utils/serviceObjectUtil.js";
+import createServiceObject from '../../utils/serviceObjectUtil.js';
 
 const updateRecipeService = async (recipeId, userId, recipeData) => {
   try {
@@ -10,14 +10,23 @@ const updateRecipeService = async (recipeId, userId, recipeData) => {
     }
 
     if (recipe.author.toString() !== userId) {
-      return createServiceObject('error', 403, 'No estás autorizado para borrar esta receta.');
+      return createServiceObject(
+        'error',
+        403,
+        'No estás autorizado para editar esta receta.'
+      );
     }
 
-    Object.assign(recipe, recipeData);
-    await recipe.save();
+    const updatedRecipe = await Recipe.findByIdAndUpdate(recipeId, recipeData, {
+      new: true,
+    });
 
-    return createServiceObject('success', 200, 'Receta actualizada.');
-
+    return createServiceObject(
+      'success',
+      200,
+      'Receta actualizada.',
+      updatedRecipe
+    );
   } catch (error) {
     return createServiceObject('error', 500, 'Error al editar la receta.');
   }
